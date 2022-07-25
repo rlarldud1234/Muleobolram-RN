@@ -13,7 +13,14 @@ const LoginScreen = () => {
         <AuthTextField placeholder={'아이디를 입력하세요.'} />
         <AuthTextField placeholder={'비밀번호를 입력하세요.'} />
       </View>
-      <AuthButton />
+      <View style={styles.button}>
+        <AuthButton
+          buttonColor="#008000"
+          title="Login"
+          tintColor="#ffffff"
+          onPress={() => console.log('login')}
+        />
+      </View>
     </SafeAreaView>
   );
 };
@@ -38,6 +45,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     top: 50,
+    marginHorizontal: 16,
+  },
+  button: {
+    top: 100,
     marginHorizontal: 16,
   },
 });
