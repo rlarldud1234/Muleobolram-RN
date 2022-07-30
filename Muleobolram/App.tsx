@@ -1,5 +1,5 @@
 import React from 'react';
-import RootStack from './screens/RootStack';
+import RootStack from './navigators';
 
 const App = () => {
   return <RootStack />;
