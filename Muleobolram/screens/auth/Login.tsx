@@ -1,10 +1,22 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, Button} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {AuthButton} from '../../components/auth';
 import {AuthTextField} from '../../components/auth';
+import {RootScreens, RootStackList} from '../../navigators';
 
-const LoginScreen = () => {
+type LoginScreenNavigationProps = StackNavigationProp<
+  RootStackList,
+  RootScreens.Login
+>;
+
+interface LoginScreenProps {
+  navigation: LoginScreenNavigationProps;
+}
+
+const LoginScreen: React.FunctionComponent<LoginScreenProps> = props => {
+  const {navigation} = props;
   return (
     <SafeAreaView>
       <Text style={styles.text1}>물어</Text>
@@ -18,7 +30,11 @@ const LoginScreen = () => {
           buttonColor="#008000"
           title="로그인"
           tintColor="#ffffff"
-          onPress={() => console.log('login')}
+          onPress={() => navigation.navigate(RootScreens.Community)}
+        />
+        <Button
+          title="회원가입 하러 가기"
+          onPress={() => navigation.navigate(RootScreens.Signup)}
         />
       </View>
     </SafeAreaView>
