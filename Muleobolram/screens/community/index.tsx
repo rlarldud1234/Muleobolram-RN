@@ -1,19 +1,65 @@
+import {StackNavigationProp} from '@react-navigation/stack';
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {FlatList} from 'react-native-gesture-handler';
 import {SafeAreaView} from 'react-navigation';
+import CommunityListItem, {
+  communityProps,
+} from '../../components/community/CommunityListItem';
+import {RootScreens, RootStackList} from '../../navigators';
 
-const CommunityScreen = () => {
+type CommunityScreenNavigationProps = StackNavigationProp<
+  RootStackList,
+  RootScreens.Community
+>;
+
+interface CommunityScreenProps {
+  navigation: CommunityScreenNavigationProps;
+}
+
+const CommunityScreen: React.FunctionComponent<
+  CommunityScreenProps
+> = props => {
+  const {navigation} = props;
+
+  let arr: Array<communityProps> = [
+    {
+      name: '김기영',
+      title: '김기영바보',
+    },
+    {
+      name: '김시안',
+      title: '김시안 개발해!',
+    },
+  ];
+
+  const renderItem = ({item}: {item: communityProps}) => {
+    return (
+      <CommunityListItem
+        item={item}
+        onPress={() =>
+          navigation.navigate(RootScreens.Details, {
+            name: item.name,
+            title: item.title,
+          })
+        }
+      />
+    );
+  };
+
   return (
-    <SafeAreaView>
-      <Text style={styles.text}>커뮤니티</Text>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={arr}
+        renderItem={renderItem}
+        keyExtractor={item => item.name}
+      />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 32,
-    tintColor: 'red',
+  container: {
     alignContent: 'center',
     justifyContent: 'center',
   },
