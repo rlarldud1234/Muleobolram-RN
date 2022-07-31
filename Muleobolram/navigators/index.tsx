@@ -4,17 +4,20 @@ import {LoginScreen} from '../screens/auth';
 import {SignupScreen} from '../screens/auth';
 import CommunityScreen from '../screens/community';
 import {NavigationContainer} from '@react-navigation/native';
+import DetailsCommunityScreen from '../screens/details';
 
 export enum RootScreens {
   Login = 'Login',
   Signup = 'Signup',
   Community = 'Community',
+  Details = 'Details',
 }
 
 export type RootStackList = {
   Login: undefined;
   Community: undefined;
   Signup: undefined;
+  Details: {name: string; title: string};
 };
 
 const Stack = createStackNavigator<RootStackList>();
@@ -29,6 +32,10 @@ const RootStack: React.FunctionComponent = () => {
           component={CommunityScreen}
         />
         <Stack.Screen name={RootScreens.Signup} component={SignupScreen} />
+        <Stack.Screen
+          name={RootScreens.Details}
+          component={DetailsCommunityScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
