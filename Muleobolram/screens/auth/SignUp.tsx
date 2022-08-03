@@ -2,6 +2,7 @@ import {StackNavigationProp} from '@react-navigation/stack';
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
+import signup from '../../api/signup';
 import {AuthButton, AuthTextField} from '../../components/auth';
 import {RootScreens, RootStackList} from '../../navigators';
 
@@ -19,6 +20,13 @@ const SignupScreen: React.FunctionComponent<SignUpScreenProps> = props => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+
+  const signUpButtonOnPress = async () => {
+    (await signup({username: id, password: password}))
+      ? navigation.pop()
+      : console.log('회원가입에 실패하셨습니다.');
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.textField}>
@@ -43,7 +51,7 @@ const SignupScreen: React.FunctionComponent<SignUpScreenProps> = props => {
           buttonColor="#008000"
           tintColor="#ffffff"
           title="회원가입"
-          onPress={() => navigation.pop()}
+          onPress={signUpButtonOnPress}
         />
       </View>
     </SafeAreaView>
