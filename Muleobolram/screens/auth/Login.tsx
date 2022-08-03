@@ -1,10 +1,11 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, StyleSheet, View, Button} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {AuthButton} from '../../components/auth';
 import {AuthTextField} from '../../components/auth';
 import {RootScreens, RootStackList} from '../../navigators';
+import {login} from '../../api/login';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackList,
@@ -17,20 +18,35 @@ interface LoginScreenProps {
 
 const LoginScreen: React.FunctionComponent<LoginScreenProps> = props => {
   const {navigation} = props;
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const loginButtonOnPress = () => {
+    login({id, password});
+  };
+
   return (
     <SafeAreaView>
       <Text style={styles.text1}>물어</Text>
       <Text style={styles.text2}>볼램</Text>
       <View style={styles.textInput}>
-        <AuthTextField placeholder={'아이디를 입력하세요.'} />
-        <AuthTextField placeholder={'비밀번호를 입력하세요.'} />
+        <AuthTextField
+          value={id}
+          onChangeText={txt => setId(txt)}
+          placeholder={'아이디를 입력하세요.'}
+        />
+        <AuthTextField
+          value={password}
+          onChangeText={txt => setPassword(txt)}
+          placeholder={'비밀번호를 입력하세요.'}
+        />
       </View>
       <View style={styles.button}>
         <AuthButton
           buttonColor="#008000"
           title="로그인"
           tintColor="#ffffff"
-          onPress={() => navigation.navigate(RootScreens.Community)}
+          onPress={() => loginButtonOnPress()}
         />
         <Button
           title="회원가입 하러 가기"

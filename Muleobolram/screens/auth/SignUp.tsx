@@ -1,5 +1,5 @@
 import {StackNavigationProp} from '@react-navigation/stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {SafeAreaView} from 'react-navigation';
 import {AuthButton, AuthTextField} from '../../components/auth';
@@ -16,12 +16,27 @@ interface SignUpScreenProps {
 
 const SignupScreen: React.FunctionComponent<SignUpScreenProps> = props => {
   const {navigation} = props;
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   return (
     <SafeAreaView>
       <View style={styles.textField}>
-        <AuthTextField placeholder="이름을 입력하세요." />
-        <AuthTextField placeholder="아이디를 입력하세요." />
-        <AuthTextField placeholder="비밀번호를 입력하세요." />
+        <AuthTextField
+          value={name}
+          onChangeText={txt => setName(txt)}
+          placeholder="이름을 입력하세요."
+        />
+        <AuthTextField
+          value={id}
+          onChangeText={txt => setId(txt)}
+          placeholder="아이디를 입력하세요."
+        />
+        <AuthTextField
+          value={password}
+          onChangeText={txt => setPassword(txt)}
+          placeholder="비밀번호를 입력하세요."
+        />
       </View>
       <View style={styles.button}>
         <AuthButton
