@@ -2,8 +2,8 @@ import React from 'react';
 import {Pressable, Text, StyleSheet} from 'react-native';
 
 export interface communityProps {
-  name: string;
   title: string;
+  description: string;
 }
 
 const CommunityListItem = ({
@@ -15,8 +15,8 @@ const CommunityListItem = ({
 }) => {
   return (
     <Pressable style={styles.container} onPress={onPress}>
-      <Text>{item.name}</Text>
       <Text>{item.title}</Text>
+      <Text>{item.description}</Text>
     </Pressable>
   );
 };
