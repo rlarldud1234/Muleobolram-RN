@@ -21,8 +21,10 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = props => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
-  const loginButtonOnPress = () => {
-    login({id, password});
+  const loginButtonOnPress = async () => {
+    (await login({id, password}))
+      ? navigation.navigate(RootScreens.Community)
+      : console.log('로그인 실패');
   };
 
   return (
