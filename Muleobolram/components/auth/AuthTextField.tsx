@@ -1,20 +1,20 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 
 export type Props = {
+  value: string;
+  onChangeText: (text: string) => void;
   placeholder: string;
 };
 
 const AuthTextField = (props: Props) => {
-  const [text, setText] = useState<string>('');
-
   return (
     <View>
       <TextInput
         style={styles.textField}
-        value={text}
+        value={props.value}
         placeholder={props.placeholder}
-        onChangeText={txt => setText(txt)}
+        onChangeText={props.onChangeText}
       />
     </View>
   );
