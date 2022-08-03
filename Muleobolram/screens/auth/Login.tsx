@@ -5,7 +5,7 @@ import {SafeAreaView} from 'react-navigation';
 import {AuthButton} from '../../components/auth';
 import {AuthTextField} from '../../components/auth';
 import {RootScreens, RootStackList} from '../../navigators';
-import {login} from '../../api/login';
+import login from '../../api/login';
 
 type LoginScreenNavigationProps = StackNavigationProp<
   RootStackList,
@@ -22,7 +22,7 @@ const LoginScreen: React.FunctionComponent<LoginScreenProps> = props => {
   const [password, setPassword] = useState('');
 
   const loginButtonOnPress = async () => {
-    (await login({id, password}))
+    (await login({username: id, password}))
       ? navigation.navigate(RootScreens.Community)
       : console.log('로그인 실패');
   };
