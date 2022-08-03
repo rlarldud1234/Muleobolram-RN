@@ -4,7 +4,7 @@ import {LoginScreen} from '../screens/auth';
 import {SignupScreen} from '../screens/auth';
 import CommunityScreen from '../screens/community';
 import {NavigationContainer} from '@react-navigation/native';
-import DetailsCommunityScreen from '../screens/details';
+import DetailsCommunityScreen, {DetailParams} from '../screens/details';
 
 export enum RootScreens {
   Login = 'Login',
@@ -17,7 +17,7 @@ export type RootStackList = {
   Login: undefined;
   Community: undefined;
   Signup: undefined;
-  Details: {name: string; title: string};
+  Details: DetailParams;
 };
 
 const Stack = createStackNavigator<RootStackList>();
