@@ -1,7 +1,7 @@
 export enum uri {
-  login = '/auths/login',
-  signup = '/auths/signup',
+  login = '/auth/signin',
+  signup = '/auth/signup',
   checkId = '/auths',
-  posts = '/posts',
+  posts = '/boards',
   comment = '/comments',
 }
